@@ -65,7 +65,7 @@ public class Login extends JFrame {
 				int result = 0;
 				
 				if (username.getText().length() == 0 || new String(password.getPassword()).length() == 0)
-					JOptionPane.showMessageDialog(null, "Username and password cannot be empty.", "Oops!",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Username and password cannot be empty.", "Oh!",JOptionPane.WARNING_MESSAGE);
 				else if (username.getText().equals("廚師") && new String(password.getPassword()).equals("000")) {
 					result = JOptionPane.showConfirmDialog(null, "Hi 廚師! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
