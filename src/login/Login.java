@@ -70,7 +70,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 廚師! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Cook();
+						new Cook();//0
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -80,7 +80,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 服務生! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Server();
+						new Server();//1
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -90,7 +90,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 櫃檯! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Reception();
+						new Reception();//2
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -100,7 +100,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 雜工! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Manager();
+						new Others();//3
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -110,7 +110,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 經理! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Others();
+						new Manager();//4
 					}
 					else if (result == 1) {
 						System.exit(0);
