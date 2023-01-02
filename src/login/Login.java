@@ -1,6 +1,9 @@
 package login;
 
 import javax.swing.*;
+
+import UserInterface.UserInterface;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -80,7 +83,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 服務生! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Server();//1
+						new UserInterface();//1
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -90,7 +93,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 櫃檯! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Reception();//2
+						new UserInterface();//2
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -110,7 +113,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 經理! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Manager();//4
+						new UserInterface();//4
 					}
 					else if (result == 1) {
 						System.exit(0);
