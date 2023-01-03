@@ -115,6 +115,7 @@ public class TableStatus {
 		panel.add(lblTable3);
 		
 		JRadioButton rdbtnTable3 = new JRadioButton("Dirty");
+		rdbtnTable3.setSelected(true);
 		rdbtnTable3.setEnabled(false);
 		rdbtnTable3.setBounds(85, 101, 58, 23);
 		panel.add(rdbtnTable3);
