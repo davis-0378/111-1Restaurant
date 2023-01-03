@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 
 import UserInterface.LogOutAndExit;
 import UserInterface.UserInterface;
@@ -48,6 +49,14 @@ public class View extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		String layout = "javax.swing.plaf.nimbus.NimbusLookAndFeel"
+				+ "";
+		try {
+			UIManager.setLookAndFeel(layout);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		frame = new JFrame();
 		frame.setBounds(465, 220, 450, 300);
 		frame.addWindowListener(new WindowAdapter() {
@@ -92,7 +101,7 @@ public class View extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface();
+				new UserInterface("Manager");
 			}
 		});
 

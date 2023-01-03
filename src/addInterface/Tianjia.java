@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import UserInterface.LogOutAndExit;
 import UserInterface.UserInterface;
@@ -53,6 +54,14 @@ public class Tianjia {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		String layout = "javax.swing.plaf.nimbus.NimbusLookAndFeel"
+				+ "";
+		try {
+			UIManager.setLookAndFeel(layout);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		frame = new JFrame();
 		frame.setBounds(420, 100, 450, 300);
 		frame.setSize(500, 500);
@@ -116,7 +125,7 @@ public class Tianjia {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface();
+				new UserInterface("Manager");
 			}
 		});
 		frame.getContentPane().add(btnNewButton);
@@ -127,30 +136,30 @@ public class Tianjia {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface();
+				new UserInterface("Manager");
 			}
 		});
 		frame.getContentPane().add(btnNewButton_1);
 		
-		textField = new JTextField();
+		textField = new JTextField("1");
 		textField.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		textField.setBounds(210, 110, 73, 21);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
+		textField_1 = new JTextField("1");
 		textField_1.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		textField_1.setColumns(10);
 		textField_1.setBounds(210, 180, 73, 21);
 		frame.getContentPane().add(textField_1);
 		
-		textField_2 = new JTextField();
+		textField_2 = new JTextField("0");
 		textField_2.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		textField_2.setColumns(10);
 		textField_2.setBounds(210, 250, 73, 21);
 		frame.getContentPane().add(textField_2);
 		
-		textField_3 = new JTextField();
+		textField_3 = new JTextField("1");
 		textField_3.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		textField_3.setColumns(10);
 		textField_3.setBounds(210, 320, 73, 21);
@@ -166,7 +175,7 @@ public class Tianjia {
 		lblNewLabel_1_1_5.setBounds(152, 34, 22, 30);
 		frame.getContentPane().add(lblNewLabel_1_1_5);
 		
-		textField_4 = new JTextField();
+		textField_4 = new JTextField("2");
 		textField_4.setBackground(new Color(255, 255, 255));
 		textField_4.setBounds(106, 42, 46, 18);
 		frame.getContentPane().add(textField_4);

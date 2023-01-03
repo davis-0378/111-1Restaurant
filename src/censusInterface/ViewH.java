@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.Dialog;
 
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 import UserInterface.LogOutAndExit;
 import UserInterface.UserInterface;
@@ -56,6 +57,14 @@ public class ViewH{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		String layout = "javax.swing.plaf.nimbus.NimbusLookAndFeel"
+				+ "";
+		try {
+			UIManager.setLookAndFeel(layout);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		frame = new JFrame();
 		frame.setBounds(330, 6, 450, 300);
 		frame.setSize(700, 720);
@@ -339,7 +348,7 @@ public class ViewH{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface();
+				new UserInterface("Manager");
 			}
 		});
 

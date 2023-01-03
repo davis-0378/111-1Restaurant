@@ -29,7 +29,7 @@ import java.awt.Window;
 import javax.swing.JSplitPane;
 
 public class UserInterface implements ActionListener{
-
+	private JButton btnLogOut, btnWorkTime, btnCheckTable, btnSelectTable, btnCheckStore, btnCensus, btnManageFile;
 	private JFrame User;
 
 	/**
@@ -39,7 +39,7 @@ public class UserInterface implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserInterface window = new UserInterface();
+					UserInterface window = new UserInterface("");
 					window.User.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,8 +52,41 @@ public class UserInterface implements ActionListener{
 		User.setVisible(true);
 	}
 	
-	public UserInterface() {
+	public void cannotWorkVisit() {
+		btnLogOut.setEnabled(true);
+		btnWorkTime.setEnabled(true);
+		btnCheckTable.setEnabled(false);
+		btnSelectTable.setEnabled(false);
+		btnCheckStore.setEnabled(false);
+		btnCensus.setEnabled(false);
+		btnManageFile.setEnabled(false);
+	}
+	
+	public void managerVisit() {
+		btnLogOut.setEnabled(true);
+		btnWorkTime.setEnabled(true);
+		btnCheckTable.setEnabled(true);
+		btnSelectTable.setEnabled(true);
+		btnCheckStore.setEnabled(true);
+		btnCensus.setEnabled(true);
+		btnManageFile.setEnabled(true);
+	}
+	
+	public void ServerVisit() {
+		btnLogOut.setEnabled(true);
+		btnWorkTime.setEnabled(true);
+		btnCheckTable.setEnabled(true);
+		btnSelectTable.setEnabled(true);
+		btnCheckStore.setEnabled(false);
+		btnCensus.setEnabled(false);
+		btnManageFile.setEnabled(false);
+	}
+	
+	public UserInterface(String UserStatus) {
 		initialize();
+		if(UserStatus.equals("CannotWork")) cannotWorkVisit();
+		else if(UserStatus.equals("Manager")) managerVisit();
+		else if(UserStatus.equals("Server")) ServerVisit();
 	}
 
 	/**
@@ -75,14 +108,14 @@ public class UserInterface implements ActionListener{
 		User.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				super.windowClosing(e);
+				User.setVisible(false);
 				new LogOutAndExit("UserInterface");
 			}
 		});
 		User.getContentPane().setPreferredSize(new Dimension(User.MAXIMIZED_HORIZ, User.MAXIMIZED_VERT));
 		User.getContentPane().setLayout(null);
 		
-		JButton btnLogOut = new JButton("登出");
+		btnLogOut = new JButton("登出");
 		//if(identify > )**********************************************************************************************
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,23 +126,25 @@ public class UserInterface implements ActionListener{
 		User.getContentPane().add(btnLogOut);
 		btnLogOut.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JButton btnWorkTime = new JButton("工作時長");
+		btnWorkTime = new JButton("工作時長");
 		btnWorkTime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new WorkTime();
 			}
 		});
 		btnWorkTime.setBounds(49, 24, 113, 23);
 		User.getContentPane().add(btnWorkTime);
 		
-		JButton btnCheckTable = new JButton("桌子狀態");
+		btnCheckTable = new JButton("桌子狀態");
 		btnCheckTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new TableStatus();
 			}
 		});
 		btnCheckTable.setBounds(49, 86, 113, 23);
 		User.getContentPane().add(btnCheckTable);
 		
-		JButton btnSelectTable = new JButton("點餐");
+		btnSelectTable = new JButton("點餐");
 		btnSelectTable.setBounds(49, 155, 113, 23);
 		btnSelectTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,11 +154,17 @@ public class UserInterface implements ActionListener{
 		});
 		User.getContentPane().add(btnSelectTable);
 		
-		JButton btnCheckStore = new JButton("庫存追蹤");
+		btnCheckStore = new JButton("庫存追蹤");
 		btnCheckStore.setBounds(249, 24, 113, 23);
+		btnCheckStore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User.setVisible(false);
+				new CheckStore();
+			}
+		});
 		User.getContentPane().add(btnCheckStore);
 		
-		JButton btnCensus = new JButton("統計分析");
+		btnCensus = new JButton("統計分析");
 		btnCensus.setBounds(247, 86, 115, 23);
 		btnCensus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -133,10 +174,15 @@ public class UserInterface implements ActionListener{
 		});
 		User.getContentPane().add(btnCensus);
 		
-		JButton btnManageFile = new JButton("管理員工檔案");
+		btnManageFile = new JButton("管理員工檔案");
 		btnManageFile.setBounds(249, 155, 113, 23);
+		btnManageFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User.setVisible(false);
+				new FileManager();
+			}
+		});
 		User.getContentPane().add(btnManageFile);
-		
 		User.setVisible(true);
 	}
 

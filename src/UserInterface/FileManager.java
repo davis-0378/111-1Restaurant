@@ -17,6 +17,8 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.ComponentOrientation;
@@ -24,13 +26,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Cursor;
 
 public class FileManager {
 
 	private JFrame frame;
 	private JTextField txtFUsername;
 	private JTextField txtFJob;
-	private JTextField textField;
+	private JTextField txtFAge;
 
 	/**
 	 * Launch the application.
@@ -61,11 +64,22 @@ public class FileManager {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				super.windowClosing(e);
+				new LogOutAndExit("Tianjia");
+			}
+		});
 		frame.getContentPane().setLayout(null);
 		
 		JToggleButton tglbtnContrictServer = new JToggleButton("限制活動");
 		tglbtnContrictServer.setBounds(346, 7, 85, 23);
+		tglbtnContrictServer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new UserInterface("CannotWork");
+			}
+		});
 		frame.getContentPane().add(tglbtnContrictServer);
 		
 		JButton btnNewButton = new JButton("修改檔案");
@@ -76,16 +90,21 @@ public class FileManager {
 		menuBar.setBounds(5, 5, 145, 23);
 		frame.getContentPane().add(menuBar);
 		
-		JMenu menuSelectAnEmployer = new JMenu("Select An Employer");
+		JMenu menuSelectAnEmployer = new JMenu("Select An Employee");
+		menuSelectAnEmployer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		menuBar.add(menuSelectAnEmployer);
 		menuSelectAnEmployer.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		
 		JFormattedTextField frmtdtxtfldDoris = new JFormattedTextField();
+		frmtdtxtfldDoris.setEditable(false);
+		frmtdtxtfldDoris.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		menuSelectAnEmployer.add(frmtdtxtfldDoris);
 		frmtdtxtfldDoris.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		frmtdtxtfldDoris.setText("James");
 		
 		JFormattedTextField frmtdtxtfldDavis = new JFormattedTextField();
+		frmtdtxtfldDavis.setEditable(false);
+		frmtdtxtfldDavis.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		menuSelectAnEmployer.add(frmtdtxtfldDavis);
 		frmtdtxtfldDavis.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		frmtdtxtfldDavis.setText("Davis");
@@ -97,15 +116,16 @@ public class FileManager {
 		panel.setLayout(null);
 		
 		txtFUsername = new JTextField();
+		txtFUsername.setEditable(false);
 		txtFUsername.setBounds(87, 12, 106, 20);
 		panel.add(txtFUsername);
-		txtFUsername.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtFUsername.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		txtFUsername.setColumns(10);
 		
 		JTextArea txtrUsername = new JTextArea();
 		txtrUsername.setBackground(new Color(192, 192, 192));
 		txtrUsername.setText("UserName:\r\n");
-		txtrUsername.setBounds(10, 10, 96, 22);
+		txtrUsername.setBounds(10, 10, 79, 22);
 		panel.add(txtrUsername);
 		
 		JTextArea txtrJob = new JTextArea();
@@ -115,6 +135,8 @@ public class FileManager {
 		panel.add(txtrJob);
 		
 		txtFJob = new JTextField();
+		txtFJob.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		txtFJob.setEditable(false);
 		txtFJob.setBounds(87, 45, 106, 21);
 		panel.add(txtFJob);
 		txtFJob.setColumns(10);
@@ -125,10 +147,33 @@ public class FileManager {
 		txtrAge.setBounds(10, 84, 66, 22);
 		panel.add(txtrAge);
 		
-		textField = new JTextField();
-		textField.setBounds(87, 87, 106, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtFAge = new JTextField();
+		txtFAge.setEditable(false);
+		txtFAge.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		txtFAge.setBounds(87, 87, 106, 21);
+		panel.add(txtFAge);
+		txtFAge.setColumns(10);
+		
+		JButton btnDone = new JButton("Done");
+		btnDone.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		btnDone.setBounds(39, 118, 85, 23);
+		btnDone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new managerEnterPassword();
+			}
+		});
+		panel.add(btnDone);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		btnBack.setBounds(350, 188, 85, 23);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new UserInterface("Manager");
+			}
+		});
+		panel.add(btnBack);
 		
 		JButton btnNewButton_1 = new JButton("新增員工");
 		btnNewButton_1.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -136,6 +181,7 @@ public class FileManager {
 		frame.getContentPane().add(btnNewButton_1);
 		frame.setVisible(true);
 	}
+	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

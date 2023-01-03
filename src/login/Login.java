@@ -21,6 +21,14 @@ public class Login extends JFrame {
 	}
 
 	private void login() {
+		String layout = "javax.swing.plaf.nimbus.NimbusLookAndFeel"
+				+ "";
+		try {
+			UIManager.setLookAndFeel(layout);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		this.setTitle("Login Page");
 		this.setLayout(new GridLayout(5, 1));
 		this.setSize(500, 500);
@@ -73,7 +81,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 廚師! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Cook();//0
+						new UserInterface("CannotWork");
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -83,7 +91,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 服務生! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new UserInterface();//1
+						new UserInterface("Server");
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -93,7 +101,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 櫃檯! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new UserInterface();//2
+						new UserInterface("Server");
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -103,7 +111,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 雜工! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new Others();//3
+						new UserInterface("CannotWork");
 					}
 					else if (result == 1) {
 						System.exit(0);
@@ -113,7 +121,7 @@ public class Login extends JFrame {
 					result = JOptionPane.showConfirmDialog(null, "Hi 經理! Work now?", "Welcome", JOptionPane.YES_NO_OPTION);
 					if (result == 0) {
 						dispose();
-						new UserInterface();//4
+						new UserInterface("Manager");//4
 					}
 					else if (result == 1) {
 						System.exit(0);
