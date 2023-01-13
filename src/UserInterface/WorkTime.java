@@ -18,7 +18,7 @@ import javax.swing.JButton;
 
 public class WorkTime {
 
-	private JFrame frame;
+	private static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -34,6 +34,10 @@ public class WorkTime {
 				}
 			}
 		});
+	}
+	
+	public static void displayWorkTime() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -54,7 +58,7 @@ public class WorkTime {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				frame.setVisible(false);
-				new LogOutAndExit("WorkTime");
+				LogOutAndExit.displayLogOutAndExit("WorkTime");
 			}
 		});
 		
@@ -111,18 +115,18 @@ public class WorkTime {
 		btnExport.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		btnExport.setBounds(124, 170, 144, 23);
 		panel.add(btnExport);
-		
+
 		JButton btnBack = new JButton("Back");
 		btnBack.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		btnBack.setBounds(306, 193, 85, 23);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface("Manager");
+				UserInterface.displayUser();
 			}
 		});
 		panel.add(btnBack);
 		
-		frame.setVisible(true);
+		frame.setVisible(false);
 	}
 }

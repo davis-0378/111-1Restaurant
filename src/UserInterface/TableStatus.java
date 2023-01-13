@@ -18,7 +18,7 @@ import javax.swing.JButton;
 
 public class TableStatus {
 
-	private JFrame frame;
+	private static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -34,6 +34,10 @@ public class TableStatus {
 				}
 			}
 		});
+	}
+	
+	public static void displayTableStatus() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -61,7 +65,7 @@ public class TableStatus {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				frame.setVisible(false);
-				new LogOutAndExit("TableStatus");
+				LogOutAndExit.displayLogOutAndExit("TableStatus");
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -223,11 +227,11 @@ public class TableStatus {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface("Manager");
+				UserInterface.displayUser();
 			}
 		});
 		panel.add(btnBack);
 		
-		frame.setVisible(true);
+		frame.setVisible(false);
 	}
 }

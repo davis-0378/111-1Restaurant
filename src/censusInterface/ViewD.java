@@ -22,7 +22,7 @@ import javax.swing.JButton;
 
 public class ViewD {
 
-	private JFrame frame;
+	private static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -37,6 +37,10 @@ public class ViewD {
 				}
 			}
 		});
+	}
+	
+	public static void displayViewD() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -65,7 +69,7 @@ public class ViewD {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
-				new LogOutAndExit("ViewD");
+				LogOutAndExit.displayLogOutAndExit("ViewD");
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -341,12 +345,12 @@ public class ViewD {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface("Manager");
+				UserInterface.displayUser();
 			}
 		});
 
 		frame.getContentPane().add(btnNewButton);
 		
-		frame.setVisible(true);
+		frame.setVisible(false);
 	}
 }

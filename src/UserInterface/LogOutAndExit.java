@@ -17,7 +17,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.UIManager;
 
-import addInterface.Tianjia;
+import addInterface.ServerAdd;
 import censusInterface.View;
 import censusInterface.ViewD;
 import censusInterface.ViewH;
@@ -25,29 +25,34 @@ import javax.swing.JFormattedTextField;
 
 public class LogOutAndExit {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private JButton btnCancel;
 	private static String lastInterface;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new LogOutAndExit(lastInterface);
+					new LogOutAndExit();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	
+	public static void displayLogOutAndExit(String lastInterface) {
+		LogOutAndExit.lastInterface = lastInterface;
+		frame.setVisible(true);
+	}
 
 	/**
 	 * Create the application.
 	 */
-	public LogOutAndExit(String lastInterface) {
+	public LogOutAndExit() {
 		initialize();
 	}
 
@@ -76,6 +81,20 @@ public class LogOutAndExit {
 		btnCancel.setForeground(Color.BLACK);
 		btnCancel.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnCancel.setBackground(UIManager.getColor("Button.background"));
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				if(lastInterface.equals("UserInterface")) UserInterface.displayUser();
+				else if(lastInterface.equals("CheckStore")) CheckStore.displayCheckStore();
+				else if(lastInterface.equals("FileManager")) FileManager.displayFileManager();
+				else if(lastInterface.equals("TableStatus")) TableStatus.displayTableStatus();
+				else if(lastInterface.equals("ServerAdd")) ServerAdd.displayServerAdd();
+				else if(lastInterface.equals("WorkTime")) WorkTime.displayWorkTime();
+				else if(lastInterface.equals("View")) View.displayView();
+				else if(lastInterface.equals("ViewH")) ViewH.displayViewH();
+				else if(lastInterface.equals("ViewD")) ViewD.displayViewD();
+			}
+		});
 		btnCancel.setBounds(258, 181, 85, 23);
 
 		frame.getContentPane().add(btnCancel);
@@ -90,6 +109,6 @@ public class LogOutAndExit {
 		frmtdtxtfldClickLeaveTo.setBounds(0, 93, 436, 37);
 		frame.getContentPane().add(frmtdtxtfldClickLeaveTo);
 		
-		frame.setVisible(true);
+		frame.setVisible(false);
 	}
 }
