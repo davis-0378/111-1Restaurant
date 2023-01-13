@@ -42,7 +42,7 @@ public class ViewH{
 		});
 	}
 	
-	public static void VisitViewH() {
+	public static void displayViewH() {
 		frame.setVisible(true);
 	}
 
@@ -72,7 +72,7 @@ public class ViewH{
 			@Override
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
-				new LogOutAndExit("ViewH");
+				LogOutAndExit.displayLogOutAndExit("ViewH");
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -348,7 +348,7 @@ public class ViewH{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface("Manager");
+				UserInterface.displayUser();
 			}
 		});
 
@@ -365,7 +365,7 @@ public class ViewH{
 		lblNewLabel_2.setBounds(461, 392, 83, 15);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		frame.setVisible(true);
+		frame.setVisible(false);
 		
 	}
 }

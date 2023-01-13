@@ -30,7 +30,7 @@ import java.awt.Cursor;
 
 public class FileManager {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private JTextField txtFUsername;
 	private JTextField txtFJob;
 	private JTextField txtFAge;
@@ -50,12 +50,17 @@ public class FileManager {
 			}
 		});
 	}
+	
+	public static void displayFileManager() {
+		frame.setVisible(true);
+	}
 
 	/**
 	 * Create the application.
 	 */
 	public FileManager() {
 		initialize();
+		new managerEnterPassword();
 	}
 
 	/**
@@ -68,7 +73,7 @@ public class FileManager {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
-				new LogOutAndExit("Tianjia");
+				LogOutAndExit.displayLogOutAndExit("FileManager");
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -159,7 +164,8 @@ public class FileManager {
 		btnDone.setBounds(39, 118, 85, 23);
 		btnDone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new managerEnterPassword();
+				frame.setVisible(false);
+				managerEnterPassword.displayEnterPassword();
 			}
 		});
 		panel.add(btnDone);
@@ -170,7 +176,7 @@ public class FileManager {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface("Manager");
+				UserInterface.displayUser();
 			}
 		});
 		panel.add(btnBack);
@@ -179,7 +185,7 @@ public class FileManager {
 		btnNewButton_1.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		btnNewButton_1.setBounds(160, 7, 85, 23);
 		frame.getContentPane().add(btnNewButton_1);
-		frame.setVisible(true);
+		frame.setVisible(false);
 	}
 	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {

@@ -8,9 +8,10 @@ import java.awt.Frame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import addInterface.Tianjia;
+import addInterface.ServerAdd;
 import censusInterface.View;
 import censusInterface.ViewD;
+import censusInterface.ViewH;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -30,7 +31,7 @@ import javax.swing.JSplitPane;
 
 public class UserInterface implements ActionListener{
 	private JButton btnLogOut, btnWorkTime, btnCheckTable, btnSelectTable, btnCheckStore, btnCensus, btnManageFile;
-	private JFrame User;
+	private static JFrame User;
 
 	/**
 	 * Launch the application.
@@ -48,7 +49,7 @@ public class UserInterface implements ActionListener{
 		});
 	}
 	
-	public void VisitUserInterface() {
+	public static void displayUser() {
 		User.setVisible(true);
 	}
 	
@@ -81,9 +82,22 @@ public class UserInterface implements ActionListener{
 		btnCensus.setEnabled(false);
 		btnManageFile.setEnabled(false);
 	}
+
+	public void initializeAll() {
+		initialize();
+		new CheckStore();
+		new LogOutAndExit();
+		new FileManager();
+		new TableStatus();
+		new ServerAdd();
+		new WorkTime();
+		new View();
+		new ViewH();
+		new ViewD();
+	}
 	
 	public UserInterface(String UserStatus) {
-		initialize();
+		initializeAll();
 		if(UserStatus.equals("CannotWork")) cannotWorkVisit();
 		else if(UserStatus.equals("Manager")) managerVisit();
 		else if(UserStatus.equals("Server")) ServerVisit();
@@ -94,8 +108,7 @@ public class UserInterface implements ActionListener{
 	 */
 	private void initialize() {
 		
-		String layout = "javax.swing.plaf.nimbus.NimbusLookAndFeel"
-				+ "";
+		String layout = "javax.swing.plaf.nimbus.NimbusLookAndFeel" + "";
 		try {
 			UIManager.setLookAndFeel(layout);
 		}catch(Exception e) {
@@ -109,7 +122,7 @@ public class UserInterface implements ActionListener{
 			@Override
 			public void windowClosing(WindowEvent e) {
 				User.setVisible(false);
-				new LogOutAndExit("UserInterface");
+				LogOutAndExit.displayLogOutAndExit("UserInterface");
 			}
 		});
 		User.getContentPane().setPreferredSize(new Dimension(User.MAXIMIZED_HORIZ, User.MAXIMIZED_VERT));
@@ -119,7 +132,8 @@ public class UserInterface implements ActionListener{
 		//if(identify > )**********************************************************************************************
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LogOutAndExit("UserInterface");
+				User.setVisible(false);
+				LogOutAndExit.displayLogOutAndExit("UserInterface");
 			}
 		});
 		btnLogOut.setBounds(171, 194, 71, 23);
@@ -129,7 +143,8 @@ public class UserInterface implements ActionListener{
 		btnWorkTime = new JButton("工作時長");
 		btnWorkTime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new WorkTime();
+				User.setVisible(false);
+				WorkTime.displayWorkTime();
 			}
 		});
 		btnWorkTime.setBounds(49, 24, 113, 23);
@@ -138,7 +153,8 @@ public class UserInterface implements ActionListener{
 		btnCheckTable = new JButton("桌子狀態");
 		btnCheckTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TableStatus();
+				User.setVisible(false);
+				TableStatus.displayTableStatus();
 			}
 		});
 		btnCheckTable.setBounds(49, 86, 113, 23);
@@ -149,7 +165,7 @@ public class UserInterface implements ActionListener{
 		btnSelectTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User.setVisible(false);
-				new Tianjia();
+				ServerAdd.displayServerAdd();
 			}
 		});
 		User.getContentPane().add(btnSelectTable);
@@ -159,7 +175,7 @@ public class UserInterface implements ActionListener{
 		btnCheckStore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User.setVisible(false);
-				new CheckStore();
+				CheckStore.displayCheckStore();
 			}
 		});
 		User.getContentPane().add(btnCheckStore);
@@ -169,7 +185,7 @@ public class UserInterface implements ActionListener{
 		btnCensus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User.setVisible(false);
-				new View();
+				View.displayView();
 			}
 		});
 		User.getContentPane().add(btnCensus);
@@ -179,7 +195,7 @@ public class UserInterface implements ActionListener{
 		btnManageFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User.setVisible(false);
-				new FileManager();
+				FileManager.displayFileManager();
 			}
 		});
 		User.getContentPane().add(btnManageFile);

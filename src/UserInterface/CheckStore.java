@@ -17,7 +17,7 @@ import java.awt.Font;
 
 public class CheckStore {
 
-	private JFrame frame;
+	private static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -41,6 +41,10 @@ public class CheckStore {
 	public CheckStore() {
 		initialize();
 	}
+	
+	public static void displayCheckStore() {
+		frame.setVisible(true);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -52,7 +56,7 @@ public class CheckStore {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				frame.setVisible(false);
-				new LogOutAndExit("CheckStore");
+				LogOutAndExit.displayLogOutAndExit("CheckStore");
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -120,12 +124,12 @@ public class CheckStore {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface("Manager");
+				UserInterface.displayUser();
 			}
 		});
 		panel.add(btnBack);
 		
-		frame.setVisible(true);
+		frame.setVisible(false);
 	}
 
 }

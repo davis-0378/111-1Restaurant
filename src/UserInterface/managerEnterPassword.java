@@ -12,11 +12,13 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class managerEnterPassword {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private JPasswordField passwordField;
 	/**
 	 * Launch the application.
@@ -32,6 +34,9 @@ public class managerEnterPassword {
 				}
 			}
 		});
+	}
+	public static void displayEnterPassword() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -55,7 +60,13 @@ public class managerEnterPassword {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				super.windowClosing(e);
+				FileManager.displayFileManager();
+			}
+		});
 		frame.getContentPane().setLayout(null);
 		
 		JPanel mainPanel = new JPanel();
@@ -93,11 +104,12 @@ public class managerEnterPassword {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
+				FileManager.displayFileManager();
 			}
 		});
 		mainPanel.add(btnNewButton);
 		
-		frame.setVisible(true);
+		frame.setVisible(false);
 		
 	}
 }

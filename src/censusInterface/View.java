@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class View extends JFrame {
 
-	private JFrame frame;
+	private static JFrame frame;
 	protected Object window;
 
 	/**
@@ -36,6 +36,10 @@ public class View extends JFrame {
 				}
 			}
 		});
+	}
+	
+	public static void displayView() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -63,7 +67,7 @@ public class View extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
-				new LogOutAndExit("View");
+				LogOutAndExit.displayLogOutAndExit("View");
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -77,7 +81,7 @@ public class View extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new ViewH();
+				ViewH.displayViewH();
 			}
 		});
 		btnNewButton.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
@@ -90,7 +94,7 @@ public class View extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new ViewD();
+				ViewD.displayViewD();
 			}
 		});
 		frame.getContentPane().add(btnNewButton_1);
@@ -101,11 +105,11 @@ public class View extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new UserInterface("Manager");
+				UserInterface.displayUser();
 			}
 		});
 
 		frame.getContentPane().add(btnNewButton_2);
-		frame.setVisible(true);
+		frame.setVisible(false);
 	}
 }
